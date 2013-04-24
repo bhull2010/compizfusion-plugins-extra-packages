@@ -36,6 +36,13 @@
 #define NOTIFY_TIMEOUT_DEFAULT -1
 #define NOTIFY_TIMEOUT_NEVER    0
 
+/* libnotify 0.7 introduced proper NOTIFY_CHECK_VERSION macro */
+#ifdef NOTIFY_CHECK_VERSION
+#  if NOTIFY_CHECK_VERSION(0,6,1)
+#    define HAVE_LIBNOTIFY_0_6_1
+#  endif
+#endif
+
 static int corePrivateIndex;
 static int displayPrivateIndex;
 
