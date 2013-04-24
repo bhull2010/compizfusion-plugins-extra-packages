@@ -1,0 +1,50 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DEB_BUILD_HARDENING=1
+
+PACKAGE := $(shell dh_listpackages)
+ROOTDIR := $(CURDIR)
+DEBDIR  := $(CURDIR)/debian
+PKGDIR  := $(DEBDIR)/$(PACKAGE)
+
+# Detect which package is provided by compiz-core:
+COMPIZCORE_DEPENDS := $(shell dpkg-query --showformat='$${Provides}\n' -W compiz-core)
+
+# autoconf cruft
+#AUTOFOO_DELETE:=aclocal.m4 config.guess config.h.in config.sub configure \
+#                depcomp install-sh intltool-extract.in intltool-merge.in \
+#                intltool-update.in ltmain.sh missing mkinstalldirs
+
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_autoreconf:
+	# Prevent from accidental breakage, early in the build process:
+	if [ -z "$(COMPIZCORE_DEPENDS)" ]; then echo 'Broken compiz-core ABI detection'; exit 1; fi
+	dh_autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- --prefix=/usr --sysconfdir=\$${prefix}/share --disable-static
+
+override_dh_clean:
+	[ ! -f Makefile ] || $(MAKE) distclean
+	# clean up extra automake cruft
+	find . -type f -name Makefile.in -exec rm -f {} ';'
+#	rm -f $(AUTOFOO_DELETE)
+	dh_clean 
+
+
+override_dh_install:
+	rm -rf $(PKGDIR)/usr/lib/pkgconfig
+	rm -rf $(PKGDIR)/usr/include
+	# clean up some upstream cruft
+	find $(PKGDIR) -type f -name '*.la' -exec rm -f {} ';'
+
+override_dh_gencontrol:
+	dh_gencontrol -- -Vcompizcore:Depends=$(COMPIZCORE_DEPENDS)
+
