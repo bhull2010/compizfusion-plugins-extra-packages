@@ -1,3 +1,11 @@
+compizfusion-plugins-extra (0.8.8-3) unstable; urgency=low
+
+  * Rename package to compizfusion-plugins-extra
+  * Remove mateconf/gconf dependency
+  * Switch to 3.0 (native) source format
+
+ -- Brent Hull <bhull2010@live.com>  Tue, 24 Apr 2013 20:06:17 -0400
+
 compiz-plugins-extra (0.8.8-2) unstable; urgency=low
 
   * [debian/patches] add 001_FTBFS_libnotify_0.7.patch to build with

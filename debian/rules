@@ -7,18 +7,11 @@
 export DEB_BUILD_HARDENING=1
 
 PACKAGE := $(shell dh_listpackages)
-ROOTDIR := $(CURDIR)
 DEBDIR  := $(CURDIR)/debian
 PKGDIR  := $(DEBDIR)/$(PACKAGE)
 
 # Detect which package is provided by compiz-core:
-COMPIZCORE_DEPENDS := $(shell dpkg-query --showformat='$${Provides}\n' -W compiz-core)
-
-# autoconf cruft
-#AUTOFOO_DELETE:=aclocal.m4 config.guess config.h.in config.sub configure \
-#                depcomp install-sh intltool-extract.in intltool-merge.in \
-#                intltool-update.in ltmain.sh missing mkinstalldirs
-
+COMPIZCORE_DEPENDS := $(shell dpkg-query --showformat='$${Provides}\n' -W compizfusion-core)
 
 %:
 	dh $@ --with autoreconf
@@ -35,14 +28,10 @@ override_dh_clean:
 	[ ! -f Makefile ] || $(MAKE) distclean
 	# clean up extra automake cruft
 	find . -type f -name Makefile.in -exec rm -f {} ';'
-#	rm -f $(AUTOFOO_DELETE)
 	dh_clean 
 
-
 override_dh_install:
-	rm -rf $(PKGDIR)/usr/lib/pkgconfig
-	rm -rf $(PKGDIR)/usr/include
-	# clean up some upstream cruft
+	# clean up libtool .la files
 	find $(PKGDIR) -type f -name '*.la' -exec rm -f {} ';'
 
 override_dh_gencontrol:
