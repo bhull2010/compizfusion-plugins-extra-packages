@@ -7,7 +7,7 @@ AC_INIT([compiz-plugins-extra], [plugins_extra_version], [maniac@opencompositing
 #AC_CONFIG_AUX_DIR(config)
 
 AM_INIT_AUTOMAKE([1.9 dist-bzip2])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
 
 AC_ISC_POSIX

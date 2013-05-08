@@ -8,8 +8,8 @@ dist_libwallpaper_la_SOURCES = wallpaper.c
 
 BUILT_SOURCES = $(nodist_libwallpaper_la_SOURCES)
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                  \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

@@ -5,8 +5,8 @@ libbicubic_la_LDFLAGS = $(PFLAGS)
 libbicubic_la_LIBADD = @COMPIZ_LIBS@
 libbicubic_la_SOURCES = bicubic.c
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                  \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

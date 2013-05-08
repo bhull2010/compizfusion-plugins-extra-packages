@@ -11,8 +11,8 @@ endif
 
 BUILT_SOURCES = $(nodist_libscalefilter_la_SOURCES)
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                  \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
 	@SCALEFILTER_CFLAGS@                \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \

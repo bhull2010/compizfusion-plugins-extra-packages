@@ -8,8 +8,8 @@ dist_libbench_la_SOURCES = bench.c bench_tex.h
 
 BUILT_SOURCES = $(nodist_libbench_la_SOURCES)
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                  \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

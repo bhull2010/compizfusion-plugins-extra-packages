@@ -18,9 +18,9 @@ endif
 
 BUILT_SOURCES = $(nodist_libgroup_la_SOURCES)
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                      \
- 	@GROUP_CFLAGS@         \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
+ 	@GROUP_CFLAGS@                      \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

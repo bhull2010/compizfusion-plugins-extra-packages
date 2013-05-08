@@ -8,8 +8,8 @@ dist_libgrid_la_SOURCES = grid.c
 
 BUILT_SOURCES = $(nodist_libgrid_la_SOURCES)
 
-INCLUDES =                              \
-	@COMPIZ_CFLAGS@                  \
+AM_CPPFLAGS =                           \
+	@COMPIZ_CFLAGS@                     \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \

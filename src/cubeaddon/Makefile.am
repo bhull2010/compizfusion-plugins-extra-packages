@@ -10,10 +10,10 @@ endif
 
 BUILT_SOURCES = $(nodist_libcubeaddon_la_SOURCES)
 
-INCLUDES =                              \
+AM_CPPFLAGS =                           \
 	-I$(top_srcdir)/include             \
-	@COMPIZ_CFLAGS@                  \
-	@COMPIZCUBE_CFLAGS@              \
+	@COMPIZ_CFLAGS@                     \
+	@COMPIZCUBE_CFLAGS@                 \
 	-DDATADIR='"$(compdatadir)"'        \
 	-DLIBDIR='"$(libdir)"'              \
 	-DLOCALEDIR="\"@datadir@/locale\""  \
